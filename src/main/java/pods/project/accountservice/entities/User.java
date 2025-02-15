@@ -8,7 +8,6 @@ import lombok.Setter;
 public class User {
     /* define the fields of the schema */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     Integer id;
 
