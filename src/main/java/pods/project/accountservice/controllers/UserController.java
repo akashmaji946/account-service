@@ -3,6 +3,7 @@ package pods.project.accountservice.controllers;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,9 @@ public class UserController {
     private static final Log log = LogFactory.getLog(UserController.class);
     private final UserRepository userRepository;
     private final RestTemplate restTemplate;
+
+    @Value("${host.url}")
+    String localhost;
 
     @Autowired
     public UserController(UserRepository userRepository) {
@@ -103,7 +107,7 @@ public class UserController {
     }
 
     private void deleteOrdersForUser(Integer id) {
-        String url = "http://localhost:8082/marketplace/users/" + id;
+        String url = "http://" + localhost +":8082/marketplace/users/" + id;
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class);
@@ -116,7 +120,7 @@ public class UserController {
     }
 
     private boolean deleteWalletForUser(Integer id) {
-        String url = "http://localhost:8081/wallets/" + id;
+        String url = "http://" + localhost +":8081/wallets/" + id;
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class);
@@ -133,7 +137,7 @@ public class UserController {
 
     private boolean getWalletStatus(Integer id) {
 
-            String url = "http://localhost:8081/wallets/" + id;
+        String url = "http://" + localhost +":8081/wallets/" + id;
 
 //        HttpHeaders headers = new HttpHeaders();
 //        headers.setContentType(MediaType.APPLICATION_JSON);
@@ -176,7 +180,7 @@ public class UserController {
     }
 
     private void deleteOrders() {
-        String url = "http://localhost:8082/marketplace/users";
+        String url = "http://" + localhost +":8082/marketplace/users";
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class);
@@ -189,7 +193,7 @@ public class UserController {
     }
 
     private void deleteWallets() {
-        String url = "http://localhost:8081/wallets";
+        String url = "http://" + localhost +":8081/wallets";
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class);
