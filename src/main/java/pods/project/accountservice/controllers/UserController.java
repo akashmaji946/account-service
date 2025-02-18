@@ -107,7 +107,7 @@ public class UserController {
     }
 
     private void deleteOrdersForUser(Integer id) {
-        String url = "http://" + localhost +":8082/marketplace/users/" + id;
+        String url = "http://" + localhost +":8081/marketplace/users/" + id;
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class);
@@ -120,7 +120,7 @@ public class UserController {
     }
 
     private boolean deleteWalletForUser(Integer id) {
-        String url = "http://" + localhost +":8081/wallets/" + id;
+        String url = "http://" + localhost +":8082/wallets/" + id;
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class);
@@ -137,7 +137,7 @@ public class UserController {
 
     private boolean getWalletStatus(Integer id) {
 
-        String url = "http://" + localhost +":8081/wallets/" + id;
+        String url = "http://" + localhost +":8082/wallets/" + id;
 
 //        HttpHeaders headers = new HttpHeaders();
 //        headers.setContentType(MediaType.APPLICATION_JSON);
@@ -180,7 +180,7 @@ public class UserController {
     }
 
     private void deleteOrders() {
-        String url = "http://" + localhost +":8082/marketplace/users";
+        String url = "http://" + localhost +":8081/marketplace/users";
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class);
@@ -193,7 +193,7 @@ public class UserController {
     }
 
     private void deleteWallets() {
-        String url = "http://" + localhost +":8081/wallets";
+        String url = "http://" + localhost +":8082/wallets";
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(null, null);
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class);
